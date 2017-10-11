@@ -27,5 +27,7 @@ int main()
 
 	float distance = dist(0, 0, 2, 0);
 	std::cout << distance << std::endl;
+
+
 	while(true){}
 }
