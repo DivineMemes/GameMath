@@ -2,6 +2,7 @@
 #include <cmath>
 #include <climits>
 #include <cfloat>
+#include "mathUtils.h"
 
 
 
@@ -160,12 +161,18 @@ vec2 lerp(const vec2 & s, const vec2 & e, float a)
 vec2 min(const vec2 & a, const vec2 & b)
 {
 
-	return vec2();
+	vec2 temp;
+	temp.x = min(a.x, b.x);
+	temp.y = min(a.y, b.y);
+	return temp;
 }
 
 vec2 max(const vec2 & a, const vec2 & b)
 {
-	return vec2();
+	vec2 temp;
+	temp.x = max(a.x, b.x);
+	temp.y = max(a.y, b.y);
+	return temp;
 }
 
 float vec2::operator[](int idx) const
