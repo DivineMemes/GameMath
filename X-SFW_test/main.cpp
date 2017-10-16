@@ -15,7 +15,6 @@ int main()
 	{
 		me.update();
 		me.draw();
-
 	}
 
 	sfw::termContext();
