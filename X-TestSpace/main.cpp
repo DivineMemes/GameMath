@@ -1,6 +1,7 @@
 #include "mathUtils.h"
 #include "vec2.h"
 #include "vec3.h"
+#include "mat3.h"
 #include<iostream>
 
 int main()
@@ -31,6 +32,10 @@ int main()
 	{
 		std::cout << result2[i] << std::endl;
 	}
+
+
+	mat3 mat1;
+	mat3 mat2;
 
 	
 

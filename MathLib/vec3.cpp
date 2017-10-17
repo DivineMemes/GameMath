@@ -196,5 +196,5 @@ vec3 clamp(vec3 & v, const vec3 min, const vec3 max)
 	v.y = clamp(v.y, min.y, max.y);
 	v.z = clamp(v.z, min.z, max.z);
 
-
+	return v;
 }
