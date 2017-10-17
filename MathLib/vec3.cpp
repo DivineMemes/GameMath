@@ -107,9 +107,9 @@ vec3 operator/=(vec3 &lhs, const float div)
 
 bool operator==(const vec3 &lhs, const vec3 &rhs)
 {
-	if(abs(lhs.x - rhs.x) < FLT_EPSILON && 
-		abs(lhs.y - rhs.y) < FLT_EPSILON &&
-		abs (lhs.z - rhs.z) < FLT_EPSILON)
+	if(abs(lhs.x - rhs.x) < EPSILON && 
+		abs(lhs.y - rhs.y) < EPSILON &&
+		abs (lhs.z - rhs.z) < EPSILON)
 	return false;
 }
 
@@ -197,4 +197,11 @@ vec3 clamp(vec3 & v, const vec3 min, const vec3 max)
 	v.z = clamp(v.z, min.z, max.z);
 
 	return v;
+}
+
+vec3 cross(const vec3 & a, const vec3 & b)
+{
+	return vec3{ a.y * b.z - a.z * b.y,
+				 a.z * b.x - a.x * b.z,
+				 a.x * b.y - a.y * b.x };
 }

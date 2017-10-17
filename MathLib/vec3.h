@@ -73,3 +73,5 @@ vec3 min3(const vec3 &a, const vec3 &b);
 vec3 max3(const vec3 &a, const vec3 &b);
 
 vec3 clamp(vec3 &v, const vec3 min, const vec3 max);
+
+vec3 cross(const vec3 &a, const vec3 &b);

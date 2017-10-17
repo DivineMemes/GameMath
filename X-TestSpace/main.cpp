@@ -34,10 +34,9 @@ int main()
 	}
 
 
-	mat3 mat1;
-	mat3 mat2;
-
-	
+	mat3 mat1 = {0,0,3,0,0,0,0,0,0};
+	mat3 mat2 = { 3,3,0,3,3,3,3,3,3 };
+	mat3 resultzz = mat1 - mat2;
 
 
 	while(true){}
