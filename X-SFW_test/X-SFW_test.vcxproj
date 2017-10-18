@@ -129,11 +129,13 @@
     <ClCompile Include="Chaser.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayerFunctions.cpp" />
     <ClCompile Include="Transform.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Chaser.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="PlayerFunctions.h" />
     <ClInclude Include="Transform.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
