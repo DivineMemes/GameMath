@@ -16,14 +16,9 @@ int main()
 	{
 		DrawMatrix(myT.getLocalTransform(), 40);
 		myT.angle += 1;
-		if (myT.angle > 90)
-		{
-			myT.dimension = vec2{ sinf(t) + 2, sinf(t) + 2 };
-		}
-		else if (myT.angle < 90)
-		{
-			myT.dimension = vec2{ sinf(t) - 2, sinf(t) - 2 };
-		}
+		
+			myT.dimension = vec2{ sinf(t) + 200 * sfw::getDeltaTime(), sinf(t) + 1 };
+		
 	}
 		sfw::termContext();
 }

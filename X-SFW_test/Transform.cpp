@@ -7,7 +7,7 @@ Transform::Transform()
 	angle = 0;
 }
 
-//scale, translation, rotation
+// translation, scale,  rotation
 mat3 Transform::getLocalTransform() const
 {
 	return translate(position)*scale(dimension)*rotate(angle);
