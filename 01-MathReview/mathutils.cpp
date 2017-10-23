@@ -46,7 +46,7 @@ float dist(float x2, float x1, float y2, float y1)
 float planePointDist(float a, float b, float c, float d, float x, float y, float z)
 {
 	float p = (a*x + b*y + c*z + d);
-	float x = sqrt(sqr(a) + sqr(b) + sqr(c));
+	float alpheabt = sqrt(sqr(a) + sqr(b) + sqr(c));
 
-	return  p / x;
+	return  p / alpheabt;
 }
