@@ -38,5 +38,4 @@ void DrawMatrix(const mat3 & t, float drawing_scale)
 	sfw::drawLine(pos.x, pos.y, up_ep.x, up_ep.y, GREEN);
 
 	sfw::drawCircle(pos.x, pos.y, drawing_scale / 4);
-	sfw::drawCircle(sfw::getMouseX(), sfw::getMouseY(), 10);
 }

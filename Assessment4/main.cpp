@@ -1,117 +1,86 @@
-#include <cmath>
 #include<iostream>
-#include "Controls.h"
+#include<cstdlib>
+#include <cmath>
+#include <ctime>
 #include "sfwdraw.h"
+#include "transform.h"
+#include "Enemy.h"
+#include "Player.h"
+#include "Bullets.h"
+#include "Controls.h"
 #include "vec2.h"
 #include "mat3.h"
-#include "transform.h"
 int main()
 {
 	sfw::initContext(800, 600);
-	
+	srand (time(NULL));
 	float t = 0;
 	int j = 0;
 	float child_offsetX = 0;
 	float child_offsetY = 0;
-	transform Player;
-	Player.position = vec2{ 400, 300 };
-	Player.dimension = vec2{ 1,1 };
 
-
-	transform babyT[10];
-	for (int i = 0; i < 10; ++i)
-	{
-		babyT[i].position = vec2{ child_offsetX , child_offsetY };
-		babyT[i].dimension = vec2{ 1,1 };
-		babyT[i].e_parent = &Player;
-		child_offsetX += 1;
-		child_offsetY += 2;
-	}
+	Player player(vec2{ 400,300 }, vec2{ 1,1 }, 0);
 	
+	float spOffsetX = player.myTrans.position.x;
+	float spOffsetY = player.myTrans.position.y;
+	
+	Enemy enemy[10];
+	for (int j = 0; j < 10; ++j)
+	{
+		(vec2{ 0,0 }, vec2{ 1,1 }, 0);
+	}
+
+	Bullet bullet[10];
+	for (int j = 0; j < 10; ++j)
+	{
+		(vec2{ 0,0 }, vec2{ 1,1 }, 0);
+	}
+	MyMouse mouse;
+	for(int i = 0; i < 10; ++i)
+	{
+		if (enemy[i].enabled)
+		{
+			float randomX = (rand() % (int)(spOffsetX + 800) - 400);
+			float randomY = (rand() % (int)(spOffsetY + 600) - 300);
+			float distance = dist(player.myTrans.position, vec2{ randomX,randomY });
+			if (distance < 150)
+			{
+				randomX += 200;
+				randomY += 200;
+			}
+			enemy[i].EnemyTrans.position = vec2{ randomX, randomY };
+		}
+	}	
+		
 	while (sfw::stepContext())
 	{
-		DrawMatrix(Player.getLocalTransform(), 40);
-
-		if (Player.angle >= 360)
-		{
-			Player.angle = 0;
-		}
+		//sfw::drawCircle(sfw::getMouseX(), sfw::getMouseY(), 5, YELLOW);
 		
-
-		
-
-		//crazy stuff
-		for (j = 0; j < 10; ++j)
+		for (int i = 0; i < 10; ++i)
 		{
-			DrawMatrix(babyT[j].getGlobalTransform(), 30);
-			babyT[j].angle += sfw::getDeltaTime() * 100;
-			if (babyT[j].angle >= 360)
+			if (enemy[i].enabled)
 			{
-				babyT[j].angle = 0;
-			}
-
-			if (Player.angle >= -1)
-			{
-				sfw::drawLine(Player.angle, babyT[j].angle, Player.angle, babyT[j].position.y);
-
+				for (int j = 0; j < 10; ++j)
+				{
+					DrawMatrix(enemy[j].EnemyTrans.getLocalTransform(), 40);
+				}
 			}
 		}
+		
+		DrawMatrix(player.myTrans.getLocalTransform(), 40);
+		
+		
+		if (mouse.MouseIsDown() == true)
+		{
+			for (int i = 0; i < 10; ++i)
+			{
+				bullet[i].enabled;
+			}
 
-
-		Player.angle += 2 * sfw::getTime() * sfw::getDeltaTime();
-
-		//myT.dimension = vec2{ sinf(t) + 100, sinf(t) + 133 };
-		movement(Player);
-		Player.dimension = vec2{ sinf(t) + 200 * sfw::getDeltaTime(), sinf(t) + sfw::getTime() };
-		std::cout << Player.angle << std::endl;
-
-
-
+		}
+		movement(player.myTrans);
+		lookAtMouse(player.myTrans);
+		std::cout << player.myTrans.angle << std::endl;
 	}
 	sfw::termContext();
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

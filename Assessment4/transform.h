@@ -11,6 +11,9 @@ public:
 	transform *e_parent;
 	transform();
 
+	bool enabled = true;
+
+
 	mat3 getLocalTransform()const;
 	mat3 getGlobalTransform()const;
 };
