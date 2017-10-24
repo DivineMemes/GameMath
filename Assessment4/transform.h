@@ -8,8 +8,10 @@ public:
 	vec2 position;
 	vec2 dimension;
 	float angle;
+	int radius;
 	transform *e_parent;
 	transform();
+
 
 	bool enabled = true;
 

@@ -4,25 +4,27 @@
 #include "Controls.h"
 
 
-Bullet bullet;
 void movement(transform & player)
 {
+	int timer = 10;
+	int speed = 2;
 	if (sfw::getKey('W'))
 	{
-		player.position.y += 1;
+		player.position.y += speed;
 	}
 	if (sfw::getKey('S'))
 	{
-		player.position.y -= 1;
+		player.position.y -= speed;
 	}
 	if (sfw::getKey('D'))
 	{
-		player.position.x += 1;
+		player.position.x += speed;
 	}
 	if (sfw::getKey('A'))
 	{
-		player.position.x -= 1;
+		player.position.x -= speed;
 	}
+
 
 
 
@@ -56,6 +58,38 @@ MyMouse::MyMouse()
 {
 }
 
+
+void MyMouse::Cursor()
+{
+	mX = sfw::getMouseX(); mY = sfw::getMouseY();
+	sfw::drawCircle(mX, mY, 5);
+}
+
+//float MyMouse::OnMouseDown()
+//{
+//	if (sfw::getMouseButton(0))
+//	{
+//		action = true;
+//		isDown = true;
+//		//Button is held down
+//	}
+//	else
+//	{
+//		isDown = false;
+//		prevmX = sfw::getMouseX();
+//		prevmY = sfw::getMouseY();
+//		//Button is held up
+//	}
+//	if (action == true && isDown == false)
+//	{
+//		savedPosX = prevmX;
+//		savedPosY = prevmY;
+//		action = false;
+//
+//	}
+//	return (savedPosX, savedPosY);
+//}
+
 bool MyMouse::MouseIsDown()
 {
 	if (sfw::getMouseButton(0))
@@ -69,6 +103,7 @@ bool MyMouse::MouseIsDown()
 	}
 	if (action == true && isDown == false)
 	{
+		action = false;
 		return true;
 	}
 	return false;

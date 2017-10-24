@@ -14,10 +14,14 @@ int main()
 {
 	sfw::initContext(800, 600);
 	srand (time(NULL));
-	float t = 0;
+
 	int j = 0;
+	int reset = 0;
+	int radius = 40;
+	float t = 0;
 	float child_offsetX = 0;
 	float child_offsetY = 0;
+	MyMouse mouse;
 
 	Player player(vec2{ 400,300 }, vec2{ 1,1 }, 0);
 	
@@ -25,17 +29,10 @@ int main()
 	float spOffsetY = player.myTrans.position.y;
 	
 	Enemy enemy[10];
-	for (int j = 0; j < 10; ++j)
-	{
-		(vec2{ 0,0 }, vec2{ 1,1 }, 0);
-	}
+	
 
 	Bullet bullet[10];
-	for (int j = 0; j < 10; ++j)
-	{
-		(vec2{ 0,0 }, vec2{ 1,1 }, 0);
-	}
-	MyMouse mouse;
+	
 	for(int i = 0; i < 10; ++i)
 	{
 		if (enemy[i].enabled)
@@ -45,16 +42,16 @@ int main()
 			float distance = dist(player.myTrans.position, vec2{ randomX,randomY });
 			if (distance < 150)
 			{
-				randomX += 200;
-				randomY += 200;
+				randomX += 100;
+				randomY += 100;
 			}
 			enemy[i].EnemyTrans.position = vec2{ randomX, randomY };
+			
 		}
 	}	
 		
 	while (sfw::stepContext())
 	{
-		//sfw::drawCircle(sfw::getMouseX(), sfw::getMouseY(), 5, YELLOW);
 		
 		for (int i = 0; i < 10; ++i)
 		{
@@ -62,25 +59,85 @@ int main()
 			{
 				for (int j = 0; j < 10; ++j)
 				{
-					DrawMatrix(enemy[j].EnemyTrans.getLocalTransform(), 40);
+					enemy[i].p = player;
+					enemy[i].draw();
+					enemy[i].update();
 				}
 			}
 		}
 		
-		DrawMatrix(player.myTrans.getLocalTransform(), 40);
+		player.draw();
 		
-		
-		if (mouse.MouseIsDown() == true)
+		for (int i = 0; i < 10; i++)
 		{
+			if (bullet[i].enabled)
+			{
+				for (int j = 0; j < 10; j++)
+				{
+					if (enemy[j].enabled)
+					{
+						if (bullet[i].CheckCollision(enemy[j]))
+						{
+							//Do Collision stuff
+							bullet[i].enabled = false;
+							enemy[j].enabled = false;
+							reset++;
+						}
+					}
+				}
+			}			
+		}
+
+
+		if (reset >= 10)
+		{
+			reset = 0;
 			for (int i = 0; i < 10; ++i)
 			{
-				bullet[i].enabled;
+				enemy[i].enabled = true;
+				float randomX = (rand() % (int)(spOffsetX + 800) - 400);
+				float randomY = (rand() % (int)(spOffsetY + 600) - 300);
+				float distance = dist(player.myTrans.position, vec2{ randomX,randomY });
+				if (distance < 150)
+				{
+					randomX += 100;
+					randomY += 100;
+				}
+				enemy[i].EnemyTrans.position = vec2{ randomX, randomY };
+			}
+		}
+
+		
+			if (mouse.MouseIsDown())
+			{
+				for (int i = 0; i < 10; ++i)
+				{
+					if (bullet[i].enabled == false)
+					{
+						std::cout << "Mouse Clicked" << std::endl;
+						/*bullet[i].enabled;*/
+
+						bullet[i].OnSpawn(player);
+						break;
+					}
+					
+				}
 			}
 
+		
+		for (int i = 0; i < 10; i++)
+		{
+			if (bullet[i].enabled == true)
+			{
+				bullet[i].draw();
+				bullet[i].update();
+			}
+			
 		}
 		movement(player.myTrans);
 		lookAtMouse(player.myTrans);
-		std::cout << player.myTrans.angle << std::endl;
+		mouse.Cursor();
+		//std::cout << reset << std::endl;
 	}
 	sfw::termContext();
 }

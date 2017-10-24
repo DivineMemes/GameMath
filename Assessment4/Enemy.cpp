@@ -1,11 +1,13 @@
+#include <cmath>
 #include "Enemy.h"
-
 Enemy::Enemy()
 {
-	EnemyTrans.position = vec2{ 0,0 };
-	EnemyTrans.dimension = vec2{ 0,0 };
+	EnemyTrans.radius = 40;
+	Radius = 10;
+	EnemyTrans.dimension = vec2{ 1,1 };
+	EnemyTrans.angle = 0;
 }
-Enemy::Enemy(vec2 pos, vec2 scale, float angle)
+Enemy::Enemy(vec2 pos, vec2 scale, float angle) : Enemy()
 {
 	EnemyTrans.position = pos;
 	EnemyTrans.dimension = scale;
@@ -13,10 +15,23 @@ Enemy::Enemy(vec2 pos, vec2 scale, float angle)
 }
 void Enemy::update()
 {
+	
 	mat3 myMatrix = EnemyTrans.getGlobalTransform();
 	vec2 Dir = norm(myMatrix[1].xy);
+
+	if (dist(p.myTrans.position, EnemyTrans.position) > 0)
+	{
+		//vec2 angleVect = { EnemyTrans.position.x - p.myTrans.position.x, EnemyTrans.position.y - p.myTrans.position.y };
+		vec2 angleVect = p.myTrans.position - EnemyTrans.position;
+		angleVect = norm(angleVect);
+		float angle = atan2(angleVect.y, angleVect.x) * 180 / 3.14159265359;
+		EnemyTrans.angle = angle;
+		EnemyTrans.position += angleVect/10;
+	}
+
 }
 void Enemy::draw()
 {
-	sfw::drawCircle(EnemyTrans.position.x, EnemyTrans.position.y, 15);
+	sfw::drawCircle(EnemyTrans.position.x, EnemyTrans.position.y, Radius);
+	//DrawMatrix(EnemyTrans.getLocalTransform(), EnemyTrans.radius);
 }

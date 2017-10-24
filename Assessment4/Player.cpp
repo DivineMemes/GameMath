@@ -1,6 +1,12 @@
 #include "Player.h"
 
-Player::Player(vec2 pos, vec2 scale, float angle)
+Player::Player()
+{
+	myTrans.radius = 40;
+	Radius = 40;
+}
+
+Player::Player(vec2 pos, vec2 scale, float angle) : Player()
 {
 	myTrans.position = pos;
 	myTrans.dimension = scale;
@@ -13,5 +19,6 @@ void Player::update()
 }
 void Player::draw()
 {
-	sfw::drawCircle(myTrans.position.x, myTrans.position.y, 1);
+	sfw::drawCircle(myTrans.position.x, myTrans.position.y, Radius);
+	DrawMatrix(myTrans.getLocalTransform(), myTrans.radius);
 }
