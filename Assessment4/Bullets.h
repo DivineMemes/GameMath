@@ -9,13 +9,13 @@ public:
 	transform bTrans;
 	Bullet();
 	Bullet(vec2 pos, vec2 scale, float angle);
-	bool enabled = false;
-	int speed;
-	float Radius;
 	vec2 dir;
+	bool enabled = false;
+	bool CheckCollision(Enemy e);
+	float Radius;
 	float lifetime;
+	int speed;
 	void update();
 	void draw();
-	bool CheckCollision(Enemy e);
 	void OnSpawn(Player p);
 };

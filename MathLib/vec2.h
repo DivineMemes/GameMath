@@ -61,6 +61,9 @@ vec2 perp(const vec2 &v);
 
 vec2 lerp(const vec2 &s, const vec2 &e, float a);
 
+float lerpf(const float &s, const float &e, float a);
+
+
 vec2 min(const vec2 &a, const vec2 &b);
 
 vec2 max(const vec2 &a, const vec2 &b);

@@ -158,6 +158,11 @@ vec2 lerp(const vec2 & s, const vec2 & e, float a)
 	return s + a * (e - s);
 }
 
+float lerpf(const float & s, const float & e, float a)
+{
+	return s + a * (e - s);
+}
+
 vec2 min(const vec2 & a, const vec2 & b)
 {
 

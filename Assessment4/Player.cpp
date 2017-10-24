@@ -3,7 +3,7 @@
 Player::Player()
 {
 	myTrans.radius = 40;
-	Radius = 40;
+	Radius = 10;
 }
 
 Player::Player(vec2 pos, vec2 scale, float angle) : Player()

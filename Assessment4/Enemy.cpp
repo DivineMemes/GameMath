@@ -21,17 +21,28 @@ void Enemy::update()
 
 	if (dist(p.myTrans.position, EnemyTrans.position) > 0)
 	{
-		//vec2 angleVect = { EnemyTrans.position.x - p.myTrans.position.x, EnemyTrans.position.y - p.myTrans.position.y };
 		vec2 angleVect = p.myTrans.position - EnemyTrans.position;
 		angleVect = norm(angleVect);
 		float angle = atan2(angleVect.y, angleVect.x) * 180 / 3.14159265359;
 		EnemyTrans.angle = angle;
-		EnemyTrans.position += angleVect/10;
+		EnemyTrans.position += angleVect/spdDamper;
 	}
-
 }
+
+
+
 void Enemy::draw()
 {
 	sfw::drawCircle(EnemyTrans.position.x, EnemyTrans.position.y, Radius);
 	//DrawMatrix(EnemyTrans.getLocalTransform(), EnemyTrans.radius);
+}
+
+bool Enemy::CollisionCheck(Player p)
+{
+	if (dist(EnemyTrans.position, p.myTrans.position) < Radius + p.Radius)
+	{
+		return true;
+	}
+	else
+		return false;
 }

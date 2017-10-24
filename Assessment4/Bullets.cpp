@@ -5,7 +5,7 @@
 Bullet::Bullet()
 {
 	bTrans.radius = 15;
-	Radius = 15;
+	Radius = 5;
 }
 
 Bullet::Bullet(vec2 pos, vec2 scale, float angle) : Bullet()
