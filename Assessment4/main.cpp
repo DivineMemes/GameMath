@@ -143,7 +143,7 @@ int main()
 				{
 					if (bullet[i].enabled == false)
 					{
-						std::cout << "Left click" << std::endl;
+						//std::cout << "Left click" << std::endl;
 						/*bullet[i].enabled;*/
 						bullet[i].OnSpawn(player);
 						break;
@@ -160,7 +160,7 @@ int main()
 					nuke.OnSpawn(player);
 					
 				}
-				std::cout << "Right click" << std::endl;
+				//std::cout << "Right click" << std::endl;
 			}
 
 			//update nuke
