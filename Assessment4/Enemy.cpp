@@ -34,7 +34,7 @@ void Enemy::update()
 void Enemy::draw()
 {
 	sfw::drawCircle(EnemyTrans.position.x, EnemyTrans.position.y, Radius);
-	//DrawMatrix(EnemyTrans.getLocalTransform(), EnemyTrans.radius);
+	DrawMatrix(EnemyTrans.getLocalTransform(), EnemyTrans.radius);
 }
 
 bool Enemy::CollisionCheck(Player p)

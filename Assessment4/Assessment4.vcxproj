@@ -130,6 +130,7 @@
     <ClCompile Include="Controls.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Nuke.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="transform.cpp" />
   </ItemGroup>
@@ -137,6 +138,7 @@
     <ClInclude Include="Bullets.h" />
     <ClInclude Include="Controls.h" />
     <ClInclude Include="Enemy.h" />
+    <ClInclude Include="Nuke.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="transform.h" />
   </ItemGroup>

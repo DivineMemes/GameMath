@@ -18,6 +18,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "X-SFW_test", "X-SFW_test\X-
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Assessment4", "Assessment4\Assessment4.vcxproj", "{413EC214-78B0-4D9C-9057-BE9359FB79DE}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C86F39C0-F182-4C02-8364-880342446724} = {C86F39C0-F182-4C02-8364-880342446724}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

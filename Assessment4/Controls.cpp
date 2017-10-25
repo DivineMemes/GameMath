@@ -2,7 +2,7 @@
 #include <iostream>
 #include "Bullets.h"
 #include "Controls.h"
-
+#include "mathutils.h"
 
 void movement(transform & player)
 {
@@ -24,9 +24,6 @@ void movement(transform & player)
 	{
 		player.position.x -= speed;
 	}
-
-
-
 
 	//stuff for rotation still pending useage
 	/*if (sfw::getKey('Q'))
@@ -90,20 +87,40 @@ void MyMouse::Cursor()
 //	return (savedPosX, savedPosY);
 //}
 
-bool MyMouse::MouseIsDown()
+bool MyMouse::LMouseIsDown()
 {
 	if (sfw::getMouseButton(0))
 	{
-		action = true;
-		isDown = true;		
+		Laction = true;
+		LisDown = true;		
 	}
 	else
 	{
-		isDown = false;
+		LisDown = false;
 	}
-	if (action == true && isDown == false)
+	if (Laction == true && LisDown == false)
 	{
-		action = false;
+		Laction = false;
+		return true;
+	}
+	return false;
+}
+
+
+bool MyMouse::RMouseIsDown()
+{
+	if (sfw::getMouseButton(1))
+	{
+		Raction = true;
+		RisDown = true;
+	}
+	else
+	{
+		RisDown = false;
+	}
+	if (Raction == true && RisDown == false)
+	{
+		Raction = false;
 		return true;
 	}
 	return false;

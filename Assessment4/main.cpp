@@ -7,9 +7,11 @@
 #include "Enemy.h"
 #include "Player.h"
 #include "Bullets.h"
+#include "Nuke.h"
 #include "Controls.h"
 #include "vec2.h"
 #include "mat3.h"
+#include "mathUtils.h"
 int main()
 {
 	sfw::initContext(800, 600);
@@ -24,16 +26,14 @@ int main()
 	bool dead = false;
 
 	MyMouse mouse;
-
 	Player player(vec2{ 400,300 }, vec2{ 1,1 }, 0);
 
 	float spOffsetX = player.myTrans.position.x;
 	float spOffsetY = player.myTrans.position.y;
 
 	Enemy enemy[10];
-
-
 	Bullet bullet[10];
+	Nuke nuke;
 
 	for (int i = 0; i < 10; ++i)
 	{
@@ -52,8 +52,12 @@ int main()
 		}
 	}
 
+	
+
 	while (sfw::stepContext())
 	{
+		
+
 		if (dead != true)
 		{
 			//draws and updates the enemies
@@ -95,7 +99,20 @@ int main()
 					}
 				}
 			}
-
+			for (int i = 0; i < 10; ++i)
+			{
+				if (nuke.enabled)
+				{
+					if (enemy[i].enabled)
+					{
+						if (nuke.NukeCollision(enemy[i]))
+						{
+							enemy[i].enabled = false;
+							reset++;
+						}
+					}
+				}
+			}
 			//resets the wave if all enemies are killed
 			if (reset >= 10)
 			{
@@ -120,19 +137,37 @@ int main()
 			}
 
 			//shoots bullets
-			if (mouse.MouseIsDown())
+			if (mouse.LMouseIsDown())
 			{
 				for (int i = 0; i < 10; ++i)
 				{
 					if (bullet[i].enabled == false)
 					{
-						//std::cout << "Mouse Clicked" << std::endl;
+						std::cout << "Left click" << std::endl;
 						/*bullet[i].enabled;*/
 						bullet[i].OnSpawn(player);
 						break;
 					}
 
 				}
+			}
+
+			//nuke 
+			if (mouse.RMouseIsDown())
+			{
+				if (nuke.enabled == false)
+				{
+					nuke.OnSpawn(player);
+					
+				}
+				std::cout << "Right click" << std::endl;
+			}
+
+			//update nuke
+			if (nuke.enabled)
+			{
+				nuke.draw();
+				nuke.update();
 			}
 
 			//updates bullets

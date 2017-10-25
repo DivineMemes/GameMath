@@ -40,3 +40,7 @@ int clamp(int value, int min, int max)
 }
 
 
+float lerpf(const float &s, const float &e, float a)
+{
+	return s + a * (e - s);
+}
