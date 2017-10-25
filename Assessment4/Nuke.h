@@ -14,7 +14,7 @@ public:
 	float Radius;
 	float lifetime;
 	
-	float expandDuration = 1.0f;
+	float expandDuration = 1.5f;
 	float expandTimer = 0.0f;
 
 	/*expandTimer += sfw::getDeltaTime();

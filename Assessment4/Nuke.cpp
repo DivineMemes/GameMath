@@ -27,7 +27,7 @@ bool Nuke::NukeCollision(Enemy e)
 void Nuke::update()
 {
 	expandTimer += sfw::getDeltaTime();
-	Radius = lerpf(0.0f, 50, expandTimer / expandDuration);
+	Radius = lerpf(0.0f, 75, expandTimer / expandDuration);
 	lifetime += sfw::getDeltaTime();
 	if (lifetime >= expandDuration)
 	{
