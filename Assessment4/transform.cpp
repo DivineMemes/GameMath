@@ -8,7 +8,7 @@ transform::transform()
 	e_parent = nullptr;
 }
 
-// translation, scale,  rotation
+// translation, scale, rotation
 mat3 transform::getLocalTransform() const
 {
 	return translate(position)*scale(dimension)*rotate(angle);

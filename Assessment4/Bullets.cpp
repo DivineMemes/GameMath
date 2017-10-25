@@ -17,8 +17,6 @@ Bullet::Bullet(vec2 pos, vec2 scale, float angle) : Bullet()
 
 void Bullet::update()
 {
-	//mat3 myMatrix = bTrans.getGlobalTransform();
-	//vec2 Dir = norm(myMatrix[1].xy);
 	bTrans.position += dir * speed;
 	lifetime -= sfw::getDeltaTime();
 	if (lifetime < 0)
@@ -29,11 +27,6 @@ void Bullet::update()
 
 void Bullet::draw()
 {
-	
-	//bullet.bTrans.e_parent = &player.myTrans;
-	//sfw::drawCircle(bTrans.position.x, bTrans.position.y, 5);
-	/*bullet.speed = 1;
-	bullet.lifetime = 5;*/
 	sfw::drawCircle(bTrans.position.x, bTrans.position.y, Radius);
 	//DrawMatrix(bTrans.getGlobalTransform(), bTrans.radius);	
 }

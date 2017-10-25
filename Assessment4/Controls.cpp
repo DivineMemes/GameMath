@@ -62,31 +62,6 @@ void MyMouse::Cursor()
 	sfw::drawCircle(mX, mY, 5);
 }
 
-//float MyMouse::OnMouseDown()
-//{
-//	if (sfw::getMouseButton(0))
-//	{
-//		action = true;
-//		isDown = true;
-//		//Button is held down
-//	}
-//	else
-//	{
-//		isDown = false;
-//		prevmX = sfw::getMouseX();
-//		prevmY = sfw::getMouseY();
-//		//Button is held up
-//	}
-//	if (action == true && isDown == false)
-//	{
-//		savedPosX = prevmX;
-//		savedPosY = prevmY;
-//		action = false;
-//
-//	}
-//	return (savedPosX, savedPosY);
-//}
-
 bool MyMouse::LMouseIsDown()
 {
 	if (sfw::getMouseButton(0))

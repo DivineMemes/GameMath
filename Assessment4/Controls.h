@@ -18,7 +18,6 @@ public:
 	float savedPosY;
 	void Cursor();
 
-	//float OnMouseDown();
 
 	bool LMouseIsDown();
 	bool RMouseIsDown();

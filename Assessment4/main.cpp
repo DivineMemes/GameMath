@@ -99,6 +99,7 @@ int main()
 					}
 				}
 			}
+			//nuke collision
 			for (int i = 0; i < 10; ++i)
 			{
 				if (nuke.enabled)
@@ -121,6 +122,7 @@ int main()
 				{
 					enemy[j].spdDamper--;
 				}
+
 				for (int i = 0; i < 10; ++i)
 				{
 					enemy[i].enabled = true;
@@ -143,12 +145,9 @@ int main()
 				{
 					if (bullet[i].enabled == false)
 					{
-						//std::cout << "Left click" << std::endl;
-						/*bullet[i].enabled;*/
 						bullet[i].OnSpawn(player);
 						break;
 					}
-
 				}
 			}
 
@@ -157,10 +156,8 @@ int main()
 			{
 				if (nuke.enabled == false)
 				{
-					nuke.OnSpawn(player);
-					
-				}
-				//std::cout << "Right click" << std::endl;
+					nuke.OnSpawn(player);	
+				}		
 			}
 
 			//update nuke
@@ -184,7 +181,6 @@ int main()
 			movement(player.myTrans);
 			lookAtMouse(player.myTrans);
 			mouse.Cursor();
-			//std::cout << reset << std::endl;
 		}
 
 		else if (dead)
