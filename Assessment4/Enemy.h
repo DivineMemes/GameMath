@@ -8,6 +8,7 @@ public:
 	Player p;
 	float Radius;
 	float spdDamper = 10;
+	unsigned int textureHandle;
 	Enemy();
 	Enemy(vec2 pos, vec2 scale, float angle);
 	bool enabled = true;

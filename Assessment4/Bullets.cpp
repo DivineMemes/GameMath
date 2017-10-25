@@ -6,6 +6,7 @@ Bullet::Bullet()
 {
 	bTrans.radius = 15;
 	Radius = 5;
+	textureHandle = sfw::loadTextureMap("res/realitycheck.png");
 }
 
 Bullet::Bullet(vec2 pos, vec2 scale, float angle) : Bullet()
@@ -13,6 +14,7 @@ Bullet::Bullet(vec2 pos, vec2 scale, float angle) : Bullet()
 	bTrans.position = pos;
 	bTrans.dimension = scale;
 	bTrans.angle = angle;
+	textureHandle = sfw::loadTextureMap("res/realitycheck.png");
 }
 
 void Bullet::update()
@@ -27,7 +29,8 @@ void Bullet::update()
 
 void Bullet::draw()
 {
-	sfw::drawCircle(bTrans.position.x, bTrans.position.y, Radius);
+	sfw::drawTexture(textureHandle, bTrans.position.x, bTrans.position.y, Radius *10, Radius *10);
+	//sfw::drawCircle(bTrans.position.x, bTrans.position.y, Radius);
 	//DrawMatrix(bTrans.getGlobalTransform(), bTrans.radius);	
 }
 

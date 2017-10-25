@@ -16,7 +16,7 @@ int main()
 {
 	sfw::initContext(800, 600);
 	srand(time(NULL));
-
+	
 	int difficulty = 0;
 	int j = 0;
 	int reset = 0;

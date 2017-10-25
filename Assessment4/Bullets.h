@@ -10,6 +10,7 @@ public:
 	Bullet();
 	Bullet(vec2 pos, vec2 scale, float angle);
 	vec2 dir;
+	unsigned int textureHandle;
 	bool enabled = false;
 	bool CheckCollision(Enemy e);
 	float Radius;

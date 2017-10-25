@@ -6,12 +6,14 @@ Enemy::Enemy()
 	Radius = 10;
 	EnemyTrans.dimension = vec2{ 1,1 };
 	EnemyTrans.angle = 0;
+	textureHandle = sfw::loadTextureMap("res/cancer.jpg");
 }
 Enemy::Enemy(vec2 pos, vec2 scale, float angle) : Enemy()
 {
 	EnemyTrans.position = pos;
 	EnemyTrans.dimension = scale;
 	EnemyTrans.angle = angle;
+	textureHandle = sfw::loadTextureMap("res/cancer.jpg");
 }
 void Enemy::update()
 {
@@ -33,8 +35,9 @@ void Enemy::update()
 
 void Enemy::draw()
 {
-	sfw::drawCircle(EnemyTrans.position.x, EnemyTrans.position.y, Radius);
-	DrawMatrix(EnemyTrans.getLocalTransform(), EnemyTrans.radius);
+	sfw::drawTexture(textureHandle, EnemyTrans.position.x, EnemyTrans.position.y, Radius * 4, Radius * 4);
+	//sfw::drawCircle(EnemyTrans.position.x, EnemyTrans.position.y, Radius);
+	//DrawMatrix(EnemyTrans.getLocalTransform(), EnemyTrans.radius);
 }
 
 bool Enemy::CollisionCheck(Player p)
