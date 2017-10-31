@@ -5,10 +5,10 @@
 class Rigidbody
 {
 public:
-	vec2 velocity, 
-		 acceleration, 
-		 force,
-		 impulse;
+	vec2 velocity,
+		acceleration,
+		force,
+		impulse;
 	float mass, drag;
 
 	float angularVelocity, angularAcceleration, torque;

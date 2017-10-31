@@ -8,7 +8,7 @@ void Player::update()
 	vec2 movement{ 0,0 };
 	int xRand = std::rand() % 800 + 1;
 	int yRand = std::rand() % 600 + 1;
-	
+
 
 	if (sfw::getKey('W'))
 	{
@@ -26,7 +26,7 @@ void Player::update()
 	{
 		movement.x += 1;
 	}
-	
+
 	if (sfw::getKey(' '))
 	{
 		movement *= speed;
@@ -47,7 +47,7 @@ void Player::update()
 
 void Player::draw()
 {
-	
+
 
 	sfw::drawCircle(pos.x, pos.y, 30.f);
 
