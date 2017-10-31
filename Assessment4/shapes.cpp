@@ -9,7 +9,7 @@ circle operator*(const mat3 & M, const circle & C)
 	scale.x = mag(M[0].xy);
 	scale.y = mag(M[1].xy);
 	ret.radius *= fmaxf(scale.x, scale.y);
-	return ret; 
+	return ret;
 }
 
 AABB operator*(const mat3 & M, const AABB & B)

@@ -8,7 +8,7 @@ public:
 	vec2 position;
 	vec2 dimension;
 	float angle;
-	Transform *e_parent; 
+	Transform *e_parent;
 	Transform();
 
 	mat3 getLocalTransform()const;

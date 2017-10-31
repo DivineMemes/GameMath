@@ -17,8 +17,8 @@ int main()
 	Transform myT;
 	Rigidbody rigidbody;
 	myT.position = vec2{ 400, 300 };
-	
-	
+
+
 
 	while (sfw::stepContext())
 	{
@@ -26,32 +26,32 @@ int main()
 
 		if (myT.angle >= 360)
 		{
-			myT.angle = 0;
+		myT.angle = 0;
 		}
 		//angle reset
 
 		DrawMatrix(someT.getGlobalTransform(), 100);
-		
+
 		//crazy stuff
 		for (j = 0; j < 10; ++j)
 		{
-			DrawMatrix(babyT[j].getGlobalTransform(), 30);
-			babyT[j].angle += sfw::getDeltaTime() * 100;
-			if (babyT[j].angle >= 360)
-			{
-				babyT[j].angle = 0;
-			}
-
-			if (myT.angle >= -1)
-			{
-				sfw::drawLine(myT.angle, babyT[j].angle, myT.angle,babyT[j].position.y);
-				
-			}
+		DrawMatrix(babyT[j].getGlobalTransform(), 30);
+		babyT[j].angle += sfw::getDeltaTime() * 100;
+		if (babyT[j].angle >= 360)
+		{
+		babyT[j].angle = 0;
 		}
-		
-		
+
+		if (myT.angle >= -1)
+		{
+		sfw::drawLine(myT.angle, babyT[j].angle, myT.angle,babyT[j].position.y);
+
+		}
+		}
+
+
 		myT.angle += 2 * sfw::getTime() * sfw::getDeltaTime();
-				
+
 		//myT.dimension = vec2{ sinf(t) + 100, sinf(t) + 133 };
 		Controls(myT);
 		myT.dimension = vec2{ sinf(t) + 200 * sfw::getDeltaTime(), sinf(t) + sfw::getTime() };
@@ -60,9 +60,9 @@ int main()
 		//rigidbody.force += { 0,-25 };
 		if (sfw::getKey('W'))
 		{
- 			rigidbody.force += myT.getGlobalTransform()[1].xy * 100; 
+			rigidbody.force += myT.getGlobalTransform()[1].xy * 100;
 		}
-		
+
 		if (sfw::getKey('A'))
 		{
 			rigidbody.torque += 720;
@@ -70,22 +70,22 @@ int main()
 		if (sfw::getKey('D'))
 		{
 			rigidbody.torque += -720;
-		} 
+		}
 		/*if (sfw::getKey('W'))
 		{
-			rigidbody.force += { 0, 100 };
+		rigidbody.force += { 0, 100 };
 		}
 		if (sfw::getKey('S'))
 		{
-			rigidbody.force += { 0, -100 };
+		rigidbody.force += { 0, -100 };
 		}
 		if (sfw::getKey('A'))
 		{
-			rigidbody.force += { -100, 0 };
+		rigidbody.force += { -100, 0 };
 		}
 		if (sfw::getKey('D'))
 		{
-			rigidbody.force += { 100, 0 };
+		rigidbody.force += { 100, 0 };
 		}*/
 
 		rigidbody.integrate(myT, dt);
@@ -93,5 +93,5 @@ int main()
 
 
 	}
-		sfw::termContext();
+	sfw::termContext();
 }
