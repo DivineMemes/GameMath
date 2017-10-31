@@ -136,6 +136,7 @@
     <ClInclude Include="Chaser.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerFunctions.h" />
+    <ClInclude Include="RigidBody.h" />
     <ClInclude Include="Transform.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

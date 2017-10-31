@@ -132,14 +132,19 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Nuke.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Rigidbody.cpp" />
+    <ClCompile Include="shapes.cpp" />
     <ClCompile Include="transform.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bullets.h" />
     <ClInclude Include="Controls.h" />
+    <ClInclude Include="Drawshape.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Nuke.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Rigidbody.h" />
+    <ClInclude Include="shapes.h" />
     <ClInclude Include="transform.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

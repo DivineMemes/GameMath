@@ -2,8 +2,9 @@
 #include <ctime>
 #include "sfwdraw.h"
 #include "Player.h"
+
 #include "Transform.h"
-#include "PlayerFunctions.h"
+#include "Rigidbody.h"
 
 int main()
 {
@@ -14,26 +15,14 @@ int main()
 	float child_offsetX = 0;
 	float child_offsetY = 0;
 	Transform myT;
+	Rigidbody rigidbody;
 	myT.position = vec2{ 400, 300 };
-	myT.dimension = vec2{ 1,1 };
-
 	
-	Transform babyT[10];
-	for (int i = 0; i < 10; ++i)
-	{
-		babyT[i].position = vec2{ child_offsetX , child_offsetY };
-		babyT[i].dimension = vec2{ 1,1 };
-		babyT[i].e_parent = &myT;
-		child_offsetX += 1;
-		child_offsetY += 2;
-	}
-	Transform someT;
-	someT.position = vec2{ 10, 10 };
-	someT.dimension = vec2{ 1,1 };
-	someT.e_parent = &myT;
+	
+
 	while (sfw::stepContext())
 	{
-		DrawMatrix(myT.getLocalTransform(), 40);
+		/*DrawMatrix(myT.getLocalTransform(), 40);
 
 		if (myT.angle >= 360)
 		{
@@ -66,8 +55,41 @@ int main()
 		//myT.dimension = vec2{ sinf(t) + 100, sinf(t) + 133 };
 		Controls(myT);
 		myT.dimension = vec2{ sinf(t) + 200 * sfw::getDeltaTime(), sinf(t) + sfw::getTime() };
-		std::cout << myT.angle << std::endl;
+		std::cout << myT.angle << std::endl;*/
+		float dt = sfw::getDeltaTime();
+		//rigidbody.force += { 0,-25 };
+		if (sfw::getKey('W'))
+		{
+ 			rigidbody.force += myT.getGlobalTransform()[1].xy * 100; 
+		}
+		
+		if (sfw::getKey('A'))
+		{
+			rigidbody.torque += 720;
+		}
+		if (sfw::getKey('D'))
+		{
+			rigidbody.torque += -720;
+		}
+		/*if (sfw::getKey('W'))
+		{
+			rigidbody.force += { 0, 100 };
+		}
+		if (sfw::getKey('S'))
+		{
+			rigidbody.force += { 0, -100 };
+		}
+		if (sfw::getKey('A'))
+		{
+			rigidbody.force += { -100, 0 };
+		}
+		if (sfw::getKey('D'))
+		{
+			rigidbody.force += { 100, 0 };
+		}*/
 
+		rigidbody.integrate(myT, dt);
+		DrawMatrix(myT.getGlobalTransform(), 40);
 
 
 	}
