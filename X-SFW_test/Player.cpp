@@ -14,7 +14,7 @@ void Player::update()
 	{
 		movement.y += 1;
 	}
-	if (sfw::getKey('S'))
+	if (sfw::getKey('S')) 
 	{
 		movement.y -= 1;
 	}

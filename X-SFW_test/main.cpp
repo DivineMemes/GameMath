@@ -70,7 +70,7 @@ int main()
 		if (sfw::getKey('D'))
 		{
 			rigidbody.torque += -720;
-		}
+		} 
 		/*if (sfw::getKey('W'))
 		{
 			rigidbody.force += { 0, 100 };
