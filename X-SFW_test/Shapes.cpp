@@ -18,7 +18,8 @@ AABB operator*(const mat3 & M, const AABB & B)
 	vec2 TR = B.pos + B.extents;
 	vec2 BL = B.pos - B.extents;
 	vec2 BR = { TR.x, BL.y };
-	vec2 TL = { BR.x, TR.y};
+	vec2 TL = { BL.x, TR.y };
+
 	TR = (M *vec3{ TR.x, TR.y, 1 }).xy;
 	BL = (M *vec3{ BL.x, BL.y, 1 }).xy;
 	BR = (M *vec3{ BR.x, BR.y, 1 }).xy;
