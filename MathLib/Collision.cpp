@@ -41,3 +41,10 @@ Collision intersect_AABB_circle(const AABB & A, const circle & B)
 {
 	return Collision();
 }
+
+void static_resolution(vec2 & pos, vec2 & vel, const Collision & hit, float elasticity)
+{
+	pos += hit.axis * hit.handedness * hit.penetrationDepth;
+
+	vel = -reflect(vel, hit.axis*hit.handedness) * elasticity;
+}

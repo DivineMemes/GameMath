@@ -1,3 +1,4 @@
+#include "..\X-SFW_test\Player.h"
 #include "Player.h"
 
 Player::Player()
@@ -5,6 +6,8 @@ Player::Player()
 	myTrans.radius = 40;
 	Radius = 10;
 }
+
+
 
 Player::Player(vec2 pos, vec2 scale, float angle) : Player()
 {

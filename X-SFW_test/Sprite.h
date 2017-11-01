@@ -8,7 +8,7 @@ public:
 	int handle;
 	vec2 dim;
 	vec2 offset;
-	Sprite(int a_handle, int width, int height) : handle(a_handle), dim{ width, height }, offset{ 0,0 }
+	Sprite(int a_handle  = -1, int width =1, int height = 1) : handle(a_handle), dim{ (float)width, (float)height }, offset{ 0,0 }
 	{
 	}
 

@@ -1,8 +1,8 @@
 #include <iostream>
 #include <ctime>
 #include "sfwdraw.h"
-#include "Player.h"
-
+#include "WyattsPlayer.h"
+#include "Wall.h"
 #include "Transform.h"
 #include "Rigidbody.h"
 #include "Shapes.h"
@@ -26,20 +26,30 @@ int main()
 	AABB box = { {0,0}, {1,1} };
 
 	AABB box2 = { {400, 300}, {160, 160} };*/
-	Player player;
-	player.transform.dimension = vec2{ 1, 1 };
+	WPlayer player;
+	player.transform.dimension = vec2{ 64,64 };
 	player.transform.position = vec2{ 400, 400 };
 	player.collider.box.extents = vec2{ .5,.5 };
+
+	Wall wall;
+	wall.transform.dimension = vec2{ 90,90 };
+	wall.transform.position = vec2{ 400, 100 };
+	wall.collider.box.extents = vec2{ .5, .5 };
 
 	while (sfw::stepContext())
 	{
 
 		float dt = sfw::getDeltaTime();
-
+		//update controllers
 		player.controller.poll(player.rigidbody, player.transform);
+		//update rigid bodies
 		player.rigidbody.integrate(player.transform, dt);
+		//draw
 		drawAABB(player.collider.getGlobalBox(player.transform), MAGENTA);
+		DrawMatrix(player.transform.getGlobalTransform(), 1);
 
+		doCollision(player, wall);
+		drawAABB(wall.collider.getGlobalBox(wall.transform), WHITE);
 
 
 
@@ -96,84 +106,7 @@ int main()
 		////rigidbody.force += { 0,-25 };
 
 		//rigidbody.integrate(myT, dt);
-		//DrawMatrix(myT.getGlobalTransform(), 1);
-=======
-
-
-
-	while (sfw::stepContext())
-	{
-		/*DrawMatrix(myT.getLocalTransform(), 40);
-
-		if (myT.angle >= 360)
-		{
-		myT.angle = 0;
-		}
-		//angle reset
-
-		DrawMatrix(someT.getGlobalTransform(), 100);
-
-		//crazy stuff
-		for (j = 0; j < 10; ++j)
-		{
-		DrawMatrix(babyT[j].getGlobalTransform(), 30);
-		babyT[j].angle += sfw::getDeltaTime() * 100;
-		if (babyT[j].angle >= 360)
-		{
-		babyT[j].angle = 0;
-		}
-
-		if (myT.angle >= -1)
-		{
-		sfw::drawLine(myT.angle, babyT[j].angle, myT.angle,babyT[j].position.y);
-
-		}
-		}
-
-
-		myT.angle += 2 * sfw::getTime() * sfw::getDeltaTime();
-
-		//myT.dimension = vec2{ sinf(t) + 100, sinf(t) + 133 };
-		Controls(myT);
-		myT.dimension = vec2{ sinf(t) + 200 * sfw::getDeltaTime(), sinf(t) + sfw::getTime() };
-		std::cout << myT.angle << std::endl;*/
-		float dt = sfw::getDeltaTime();
-		//rigidbody.force += { 0,-25 };
-		if (sfw::getKey('W'))
-		{
-			rigidbody.force += myT.getGlobalTransform()[1].xy * 100;
-		}
-
-		if (sfw::getKey('A'))
-		{
-			rigidbody.torque += 720;
-		}
-		if (sfw::getKey('D'))
-		{
-			rigidbody.torque += -720;
-		}
-		/*if (sfw::getKey('W'))
-		{
-		rigidbody.force += { 0, 100 };
-		}
-		if (sfw::getKey('S'))
-		{
-		rigidbody.force += { 0, -100 };
-		}
-		if (sfw::getKey('A'))
-		{
-		rigidbody.force += { -100, 0 };
-		}
-		if (sfw::getKey('D'))
-		{
-		rigidbody.force += { 100, 0 };
-		}*/
-
-		rigidbody.integrate(myT, dt);
-		DrawMatrix(myT.getGlobalTransform(), 40);
->>>>>>> 4d942463ec40b16b30e33191317e8ecfd8384f00
-
-
+		//DrawMatrix(myT.getGlobalTransform(), 1);		
 	}
 	sfw::termContext();
 }
