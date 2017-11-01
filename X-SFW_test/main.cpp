@@ -26,13 +26,19 @@ int main()
 	AABB box = { {0,0}, {1,1} };
 
 	AABB box2 = { {400, 300}, {160, 160} };*/
+	Player player;
+	player.transform.dimension = vec2{ 1, 1 };
+	player.transform.position = vec2{ 400, 400 };
+	player.collider.box.extents = vec2{ .5,.5 };
 
 	while (sfw::stepContext())
 	{
 
-		
+		float dt = sfw::getDeltaTime();
 
-
+		player.controller.poll(player.rigidbody, player.transform);
+		player.rigidbody.integrate(player.transform, dt);
+		drawAABB(player.collider.getGlobalBox(player.transform), MAGENTA);
 
 
 
