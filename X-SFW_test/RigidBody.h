@@ -20,11 +20,11 @@ public:
 		force{ 0,0 },
 		impulse{ 0,0 },
 		mass(1),
-		drag(.25f),
+		drag(1),
 		angularVelocity(0),
 		angularAcceleration(0),
 		torque(0),
-		angulardrag(.25f)
+		angulardrag(0.25f)
 	{
 
 	}
@@ -40,7 +40,7 @@ public:
 		force = -velocity * drag;
 
 		angularAcceleration = torque / mass;
-		angularVelocity = angularAcceleration *dt;
+		angularVelocity += angularAcceleration *dt;
 		T.angle += angularVelocity*dt;
 		torque = -angularVelocity *angulardrag;
 
