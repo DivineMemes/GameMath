@@ -31,11 +31,16 @@ int main()
 	player.transform.position = vec2{ 400, 400 };
 	player.collider.box.extents = vec2{ .5,.5 };
 
-	Wall wall;
-	wall.transform.dimension = vec2{ 90,90 };
-	wall.transform.position = vec2{ 400, 100 };
-	wall.collider.box.extents = vec2{ .5, .5 };
+	Wall wall1;
+	wall1.transform.dimension = vec2{ 90,90 };
+	wall1.transform.position = vec2{ 400, 100 };
+	wall1.collider.box.extents = vec2{ 5, .5 };
 
+
+	Wall wall2;
+	wall2.transform.dimension = vec2{ 90,90 };
+	wall2.transform.position = vec2{ 400, 100 };
+	wall2.collider.box.extents = vec2{ 5, .5 };
 	while (sfw::stepContext())
 	{
 
@@ -48,8 +53,10 @@ int main()
 		drawAABB(player.collider.getGlobalBox(player.transform), MAGENTA);
 		DrawMatrix(player.transform.getGlobalTransform(), 1);
 
-		doCollision(player, wall);
-		drawAABB(wall.collider.getGlobalBox(wall.transform), WHITE);
+		doCollision(player, wall1);
+		drawAABB(wall1.collider.getGlobalBox(wall1.transform), WHITE);
+		doCollision(player, wall2);
+		drawAABB(wall2.collider.getGlobalBox(wall2.transform), WHITE);
 
 
 

@@ -37,9 +37,12 @@ Collision intersect_circle(const circle & A, const circle & B)
 	return ret;
 }
 
-Collision intersect_AABB_circle(const AABB & A, const circle & B)
+Collision intersect_AABB_circle(const AABB & B, const circle & A)
 {
-	return Collision();
+	vec2 cp = snap(B.min(), A.position, B.max());
+
+	Collision result = intersect_circle(A, circle{ cp,0 });
+	
 }
 
 void static_resolution(vec2 & pos, vec2 & vel, const Collision & hit, float elasticity)
@@ -69,7 +72,7 @@ void dynamic_resolution(vec2 & Apos, vec2 & Avel, float Amass,
 	-(1 + elasticity) * dot(Rvel, normal) / dot(normal, normal *(1 / Amass + 1 / Bmass));
 
 
-	float j;
+	float j = 0;
 
 	Avel += (j / Amass)*normal;
 	Bvel - +(j / Bmass)*normal;

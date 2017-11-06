@@ -1,4 +1,5 @@
 #include "mathUtils.h"
+#include <cmath>
 
 int min(int a, int b)
 {
@@ -25,6 +26,10 @@ int max(int a, int b)
 	}
 }
 
+float snap(float s, float v, float l)
+{
+	return abs(v - s) < abs(v - l) ? s : l;
+}
 
 int clamp(int value, int min, int max)
 {
