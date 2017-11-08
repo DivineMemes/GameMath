@@ -5,7 +5,6 @@
 #include "Controller.h"
 #include "Sprite.h"
 #include "vec2.h"
-#include "Wall.h"
 class WPlayer
 {
 public:
@@ -16,4 +15,6 @@ public:
 	Controller controller;
 	Sprite sprite;
 };
-bool doCollision(WPlayer &player, Wall &wall);
+//bool doCollision(WPlayer &player, Wall &wall);
+//bool doCollision(Ball &ball, const Wall &wall);
+//bool doCollision(Player &player, Ball &wall);

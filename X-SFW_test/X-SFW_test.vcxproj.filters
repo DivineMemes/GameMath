@@ -42,6 +42,12 @@
     <ClCompile Include="WyattsPlayer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Controller.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerObjects.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Chaser.h">
@@ -77,7 +83,7 @@
     <ClInclude Include="WyattsPlayer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Wall.h">
+    <ClInclude Include="PlayerObjects.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

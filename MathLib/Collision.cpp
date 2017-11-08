@@ -7,7 +7,7 @@ Collision intersect_1D(float Amin, float Amax, float Bmin, float Bmax)
 	float rPD = Amax - Bmin;
 
 	ret.penetrationDepth = min(lPD, rPD);
-	ret.handedness = copysign(1, rPD - lPD);
+	ret.handedness = -copysign(1, rPD - lPD);
 	return ret;
 }
 
@@ -37,11 +37,11 @@ Collision intersect_circle(const circle & A, const circle & B)
 	return ret;
 }
 
-Collision intersect_AABB_circle(const AABB & B, const circle & A)
+Collision intersect_AABB_circle(const circle & A, const AABB & B)
 {
 	vec2 cp = snap(B.min(), A.position, B.max());
 
-	Collision result = intersect_circle(A, circle{ cp,0 });
+	return intersect_circle(A, circle{ cp,0 });
 	
 }
 

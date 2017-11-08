@@ -129,9 +129,11 @@
     <ClCompile Include="..\MathLib\Collision.cpp" />
     <ClCompile Include="Chaser.cpp" />
     <ClCompile Include="Collider.cpp" />
+    <ClCompile Include="Controller.cpp" />
     <ClCompile Include="DrawShape.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PlayerFunctions.cpp" />
+    <ClCompile Include="PlayerObjects.cpp" />
     <ClCompile Include="Shapes.cpp" />
     <ClCompile Include="Transform.cpp" />
     <ClCompile Include="WyattsPlayer.cpp" />
@@ -142,12 +144,12 @@
     <ClInclude Include="Collision.h" />
     <ClInclude Include="Controller.h" />
     <ClInclude Include="DrawShape.h" />
+    <ClInclude Include="PlayerObjects.h" />
     <ClInclude Include="PlayerFunctions.h" />
     <ClInclude Include="RigidBody.h" />
     <ClInclude Include="Shapes.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="Transform.h" />
-    <ClInclude Include="Wall.h" />
     <ClInclude Include="WyattsPlayer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
