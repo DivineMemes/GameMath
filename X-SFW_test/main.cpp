@@ -10,18 +10,22 @@
 int main()
 {
 	sfw::initContext(800, 600);
-
-	/*std::srand(std::time(0));*/
+	unsigned int doot = sfw::loadSound("doot.wav");
+	std::srand(std::time(0));
 	Wall wall1;
 	wall1.transform.dimension = vec2{ 90,90 };
 	wall1.transform.position = vec2{ 400, 600 };
-	wall1.collider.box.extents = vec2{ 5, 0 };
-
+	wall1.collider.box.extents = vec2{ 5, .5 };
 
 	Wall wall2;
 	wall2.transform.dimension = vec2{ 90,90 };
 	wall2.transform.position = vec2{ 400, 0 };
-	wall2.collider.box.extents = vec2{ 5, 0 };
+	wall2.collider.box.extents = vec2{ 5, .5 };
+
+	Wall p1Score;
+	p1Score.transform.dimension = vec2{ 10,10 };
+	p1Score.transform.position = vec2{ 800, 300 };
+	p1Score.collider.box.extents = vec2{ .5, 50 };
 
 	Ball ball;
 	ball.transform.dimension = vec2{ 10, 10 };
@@ -29,6 +33,7 @@ int main()
 	ball.sprite.handle = sfw::loadTextureMap("nootella.jpg");
 	ball.rigidbody.drag = 0;
 	ball.rigidbody.force = vec2{ 50,0 };
+	
 
 	Paddle p1;
 	p1.transform.dimension = vec2{ 10, 10 };
@@ -68,20 +73,21 @@ int main()
 		//DrawMatrix(player.transform.getGlobalTransform(), 1);
 		drawAABB(wall1.collider.getGlobalBox(wall1.transform), WHITE);
 		drawAABB(wall2.collider.getGlobalBox(wall2.transform), WHITE);
-		
+		drawAABB(p1Score.collider.getGlobalBox(p1Score.transform), WHITE);
 		drawAABB(p1.collider.getGlobalBox(p1.transform), BLUE);
 		drawAABB(p2.collider.getGlobalBox(p2.transform), BLUE);
 		ball.sprite.draw(ball.transform);
 		
 		///collision
 		
-			doCollision(p1, ball);
-			doCollision(p2, ball);
+			doCollision(p1, ball, doot);
+			doCollision(p2, ball, doot);
 			doCollision(p1, wall1);
 			doCollision(p1, wall2);
 			doCollision(p2, wall1);
 			doCollision(p2, wall2);
-		
+			doCollision(ball, wall1);
+			doCollision(ball, wall2);
 
 
 

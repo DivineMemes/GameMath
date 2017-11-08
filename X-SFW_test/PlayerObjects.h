@@ -14,6 +14,7 @@ public:
 	Controller controller;
 	Collider collider;
 	Sprite sprite;
+	int score = 0;
 };
 
 class Ball
@@ -23,7 +24,7 @@ public:
 	Rigidbody rigidbody;
 	Collider collider;
 	Sprite sprite;
-	
+	bool enabled = true;
 };
 
 class Wall
@@ -35,4 +36,4 @@ public:
 };
 bool doCollision(Paddle &paddle, const Wall &wall);
 bool doCollision(Ball &ball, const Wall &wall);
-bool doCollision(Paddle &paddle, Ball &ball);
+bool doCollision(Paddle &paddle, Ball &ball, unsigned int sound);
