@@ -24,18 +24,21 @@ bool doCollision(Ball & ball, const Wall & wall)
 
 bool doCollision(Paddle & paddle, Ball & ball, unsigned int sound)
 {
+	
+	
 	Collision hit = collides(ball.transform, ball.collider,paddle.transform, paddle.collider);
 	if (hit.penetrationDepth > 0)
 	{
 
 		static_resolution(ball.transform.position, ball.rigidbody.velocity, hit, 1.2f);
 
-		ball.rigidbody.velocity = 
-					(rotate(rand() % 40 - 20) * vec3 { ball.rigidbody.velocity.x,
-													   ball.rigidbody.velocity.y, 0 }).xy;
-		
-		sfw::playSound(sound, false);
+		ball.rigidbody.velocity =
+			(rotate(rand() % 40 - 20) * vec3 {
+			ball.rigidbody.velocity.x,
+				ball.rigidbody.velocity.y, 0
+		}).xy;
 
+		sfw::playSound(sound, false);
 		//dynamic_resolution(paddle.transform.position, paddle.rb.velocity, paddle.rb.mass += 1000000, ball.transform.position, ball.rigidbody.velocity, ball.rigidbody.mass = 1, hit, 1);
 		/*float curVel = mag(ball.rigidbody.velocity);
 		if (curVel < 0)
