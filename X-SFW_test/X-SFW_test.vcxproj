@@ -155,6 +155,12 @@
   <ItemGroup>
     <Media Include="doot.wav" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="betterbepis.png" />
+    <Image Include="dimension.jpg" />
+    <Image Include="fontmap.png" />
+    <Image Include="nootella.jpg" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

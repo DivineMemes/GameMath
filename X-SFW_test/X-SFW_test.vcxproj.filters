@@ -92,4 +92,18 @@
       <Filter>Resource Files</Filter>
     </Media>
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="dimension.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="betterbepis.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="fontmap.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="nootella.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
 </Project>

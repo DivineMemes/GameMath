@@ -12,6 +12,7 @@ int main()
 	sfw::initContext(800, 600);
 	unsigned int doot = sfw::loadSound("doot.wav");
 	unsigned int p1Font = sfw::loadTextureMap("fontmap.png", 16, 16);
+	unsigned int bGround = sfw::loadTextureMap("dimension.jpg");
 	int p1s = 48;
 	int p2s = 48;
 	std::srand(std::time(0));
@@ -31,7 +32,7 @@ int main()
 	//	}
 	//}
 	//std::cout << randFX << " ";
-	
+
 	float randFY = rand() % 50 - 25;
 	Wall wall1;
 	wall1.transform.dimension = vec2{ 90,90 };
@@ -60,22 +61,26 @@ int main()
 	ball.rigidbody.drag = 0;
 	ball.rigidbody.force = vec2{ 50 * randFX,randFY };
 	ball.enabled = true;
-	
-	
+
+
 
 	Paddle p1;
 	p1.transform.dimension = vec2{ 10, 10 };
 	p1.transform.position = vec2{ 100, 300 };
 	p1.collider.box.extents = vec2{ 1, 10 };
+	p1.sprite.handle = sfw::loadTextureMap("betterbepis.png");
+	p1.sprite.dim = p1.transform.dimension;
 	p1.controller.up = 'W';
 	p1.controller.down = 'S';
 	p1.controller.left = 'J';
 	p1.controller.right = 'L';
-	
+
 	Paddle p2;
 	p2.transform.dimension = vec2{ 10, 10 };
 	p2.transform.position = vec2{ 700, 300 };
 	p2.collider.box.extents = vec2{ 1, 10 };
+	p2.sprite.handle = sfw::loadTextureMap("betterbepis.png");
+	
 	p2.controller.up = 'I';
 	p2.controller.down = 'K';
 	p2.controller.left = 'A';
@@ -83,65 +88,83 @@ int main()
 
 	while (sfw::stepContext())
 	{
-
-		float dt = sfw::getDeltaTime();
-		///update controllers
-		p1.controller.poll(p1.rb, p1.transform);
-		p2.controller.poll(p2.rb, p2.transform);
-		const char p1ScoreSet[] = { p1s, '\0' };
-		const char p2ScoreSet[] = { p2s, '\0' };
-		///update rigid bodies
-		p1.rb.integrate(p1.transform, dt);
-		p2.rb.integrate(p2.transform, dt);
-		if (ball.enabled)
-			ball.rigidbody.integrate(ball.transform, dt);
-		std::cout << ball.rigidbody.velocity.x <<  " " << ball.rigidbody.velocity.y << std::endl;
-
-		///draw
-		drawAABB(wall1.collider.getGlobalBox(wall1.transform), WHITE);
-		drawAABB(wall2.collider.getGlobalBox(wall2.transform), WHITE);
-		drawAABB(p1Score.collider.getGlobalBox(p1Score.transform), WHITE);
-		drawAABB(p2Score.collider.getGlobalBox(p2Score.transform), WHITE);
-		drawAABB(p1.collider.getGlobalBox(p1.transform), BLUE);
-		drawAABB(p2.collider.getGlobalBox(p2.transform), BLUE);
-		//string
-		sfw::drawString(p1Font, p1ScoreSet,	  0, 600, 50, 50, 0, 0, BLUE);
-		sfw::drawString(p1Font, p2ScoreSet, 750, 600, 50, 50, 0, 0, BLUE);
-
-		if (ball.enabled)
+		if (p1s < 55 && p2s < 55)
 		{
-			ball.sprite.draw(ball.transform);
-			ball.rigidbody.velocity.x = clamp(ball.rigidbody.velocity.x, 0, 500);
-			ball.rigidbody.velocity.y = clamp(ball.rigidbody.velocity.y, 0, 500);
-		}
-		else if (ball.enabled == false)
-		{
-			ball.transform.dimension = vec2{ 10, 10 };
-			ball.transform.position = vec2{ 400, 300 };
-			ball.rigidbody.force = vec2{ 50 * randFX,randFY };
-			ball.enabled = true;
-		}
-		///collision
 
-		doCollision(p1, ball, doot);
-		doCollision(p2, ball, doot);
-		doCollision(p1, wall1);
-		doCollision(p1, wall2);
-		doCollision(p2, wall1);
-		doCollision(p2, wall2);
-		doCollision(ball, wall1);
-		doCollision(ball, wall2);
+			float dt = sfw::getDeltaTime();
+			///update controllers
+			p1.controller.poll(p1.rb, p1.transform);
+			p2.controller.poll(p2.rb, p2.transform);
+			const char p1ScoreSet[] = { p1s, '\0' };
+			const char p2ScoreSet[] = { p2s, '\0' };
+			///update rigid bodies
+			p1.rb.integrate(p1.transform, dt);
+			p2.rb.integrate(p2.transform, dt);
+			if (ball.enabled)
+				ball.rigidbody.integrate(ball.transform, dt);
+			//std::cout << ball.rigidbody.velocity.x << " " << ball.rigidbody.velocity.y << std::endl;
 
-		if (doCollision(ball, p1Score) == true)
-		{
-			p1s++;
-			ball.enabled = false;
+			///draw
+			sfw::drawTexture(bGround, 400, 300, 800, 600);
+			drawAABB(wall1.collider.getGlobalBox(wall1.transform), WHITE);
+			drawAABB(wall2.collider.getGlobalBox(wall2.transform), WHITE);
+			drawAABB(p1Score.collider.getGlobalBox(p1Score.transform), WHITE);
+			drawAABB(p2Score.collider.getGlobalBox(p2Score.transform), WHITE);
+			drawAABB(p1.collider.getGlobalBox(p1.transform), BLUE);
+			drawAABB(p2.collider.getGlobalBox(p2.transform), BLUE);
+			p1.sprite.dim = p1.transform.dimension;
+			p1.sprite.draw(p1.transform);
+			p2.sprite.dim = p2.transform.dimension;
+			p2.sprite.draw(p2.transform);
+			
+			//string
+			sfw::drawString(p1Font, p1ScoreSet, 0, 600, 50, 50, 0, 0, BLUE);
+			sfw::drawString(p1Font, p2ScoreSet, 750, 600, 50, 50, 0, 0, BLUE);
+
+			if (ball.enabled)
+			{
+				ball.sprite.draw(ball.transform);
+				ball.rigidbody.velocity.x = clamp(ball.rigidbody.velocity.x, -500, 500);
+				ball.rigidbody.velocity.y = clamp(ball.rigidbody.velocity.y, -500, 500);
+			}
+			else if (ball.enabled == false)
+			{
+				ball.rigidbody.velocity = { 0,0 };
+				ball.transform.dimension = vec2{ 10, 10 };
+				ball.transform.position = vec2{ 400, 300 };
+				ball.rigidbody.impulse = vec2{ 75 * randFX,randFY };
+				ball.enabled = true;
+			}
+			///collision
+
+			doCollision(p1, ball, doot);
+			doCollision(p2, ball, doot);
+			doCollision(p1, wall1);
+			doCollision(p1, wall2);
+			doCollision(p2, wall1);
+			doCollision(p2, wall2);
+			doCollision(ball, wall1);
+			doCollision(ball, wall2);
+
+			if (doCollision(ball, p1Score) == true)
+			{
+				p1s++;
+				ball.enabled = false;
+			}
+			if (doCollision(ball, p2Score) == true)
+			{
+				p2s++;
+				ball.enabled = false;
+			}
 		}
-		if (doCollision(ball, p2Score) == true)
-		{
-			p2s++;
-			ball.enabled = false;
-		}
+	}
+	if (p1s >= 55)
+	{
+		std::cout << "PLAYER ONE WINS!" << std::endl;
+	}
+	else if (p2s >= 55)
+	{
+		std::cout << "PLAYER TWO WINS!" << std::endl;
 	}
 	sfw::termContext();
 }
