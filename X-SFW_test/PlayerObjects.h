@@ -25,6 +25,7 @@ public:
 	Collider collider;
 	Sprite sprite;
 	bool enabled = true;
+	float speed;
 };
 
 class Wall

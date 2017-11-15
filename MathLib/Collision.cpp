@@ -13,6 +13,11 @@ Collision intersect_1D(float Amin, float Amax, float Bmin, float Bmax)
 
 Collision intersect_AABB(const AABB & A, const AABB & B)
 {
+	// use dot product to find the overShadow
+	//
+
+
+
 	Collision xres = intersect_1D(A.min().x, A.max().x, B.min().x, B.max().x);
 	Collision yres = intersect_1D(A.min().y, A.max().y, B.min().y, B.max().y);
 	xres.axis = vec2{ 1,0 };
@@ -44,6 +49,14 @@ Collision intersect_AABB_circle(const circle & A, const AABB & B)
 	return intersect_circle(A, circle{ cp,0 });
 	
 }
+
+//Collision SATintersect(const AABB & a, const AABB & b)
+//{
+//	float shadow = dot(a.extents, b.extents);
+//	Collision xres = intersect_1D(a.min().x, a.max().x, b.min().x, b.max().x);
+//	Collision yres = intersect_1D(a.min().y, a.max().y, b.min().y, b.max().y);
+//
+//}
 
 void static_resolution(vec2 & pos, vec2 & vel, const Collision & hit, float elasticity)
 {
