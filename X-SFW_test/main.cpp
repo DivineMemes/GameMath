@@ -111,8 +111,8 @@ int main()
 		if (ball.enabled)
 		{
 			ball.sprite.draw(ball.transform);
-			clamp(ball.rigidbody.velocity.x, 0, 500);
-			clamp(ball.rigidbody.velocity.y, 0, 500);
+			ball.rigidbody.velocity.x = clamp(ball.rigidbody.velocity.x, 0, 500);
+			ball.rigidbody.velocity.y = clamp(ball.rigidbody.velocity.y, 0, 500);
 		}
 		else if (ball.enabled == false)
 		{
